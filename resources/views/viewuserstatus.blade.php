@@ -15,10 +15,10 @@
             background-color:#5c00e6;
 
             }
-            body{
+            /* body{
               background-image: url("../img/4.jpg");
               background-size: cover;
-            }
+            } */
 
              </style> 
             
@@ -49,10 +49,10 @@
       <a href="#" class="text-decoration-none text-white">TRAVEL KITE</a>  
       <div class="">
           <ul class="navbar-nav">
-              <li class="nav-item"><a href="" class="nav-link text-white">Home</a></li> 
+              <li class="nav-item"><a href="/passenger" class="nav-link text-white">Home</a></li> 
               <li class="nav-item"><a href="" class="nav-link text-white">View Profile</a></li>
-              <li class="nav-item"><a href="" class="nav-link text-white" onclick="document.getElementById('id02').style.display='block'" style="width:auto;>Search Flight</a></li>
-              <li class="nav-item"><a href="viewnoti" class="nav-link  text-white">Notification</a></li>
+              <li class="nav-item"><a href="" class="nav-link text-white">Search Flight</a></li>
+              <li class="nav-item"><a href="" class="nav-link  text-white">Notification</a></li>
               <!-- <li class="nav-item"><a href="#" class="nav-link">Portfolio</a></li>
  -->           <li class="nav-item"><a href="/logout" class="nav-link text-white">Log Out</a                 ></li>
           </ul>
@@ -61,7 +61,34 @@
  </nav>
 <!-----------------------------end-------------------->
 <!------------------------------section1------------------------->
+<div><h1 style="color: red;text-align: center">FLIGHT NOTIFICATIONS</h1></div>
+<table>
+<tr>
+<table border="1" class="table table-bordered table-striped table-primary">
+<thead>
+<tr>
+<th>Notification</th>
+<th>Flight Name</th>
+<th>Date</th>
+<th>Action</th>
+
+</thead></tr>
+@foreach ($user as $value)
+<tr>
+
+<td>{{$value['notification']}}</td>
+<td>{{$value['flight']}}</td>
+<td>{{$value['currentdate']}}</td>
+<!-- <input type="hidden" name="id" value="{{$value['id']}}"> -->
+
  
+ </td>
+<td><a href="{{"delete/".$value->id}}">delete</a>
+</tr>
+@endforeach
+</table>
+</fieldset>
+</form>
 
 
   
@@ -71,53 +98,15 @@
 
 
 </section>
-<div id="id02" class="modal container ">
-  
-  <form class="modal-content animate form-group" action="/flightbook" method="post">
-    <div class="imgcontainer ">
-      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-    </div>
-            <h1 class="text-center text-white">Search Flight Details</h1>
-
-            <div id="form search">
-                <h3 class="text-white ml-5 ">Book a Flight</h3>
-                <div id="input3">
-                    <span id="input-group" class="text-primary">Select Your Fare</span>
-                    <input type="radio" id="group" name="r">
-                    <label class="text-white" for="group">One Way</label>
-                    <input type="radio" id="group" name="r">
-                    <label class="text-white" for="group">Round Trip</label>
-                </div>
-            <div id="input">
-              
-                <input type="text" id="group" name="Departure" class="" placeholder="From">
-
-              
-                <input type="text" id="group" name="arrival" placeholder="To">
-                
-                <input type="date" id="group" name="date" placeholder="Departure Date">
-                <br>
-                <button type="submit" class="btn btn-primary text-white m-5">Search Flight</button>
-                <button type="reset" class="btn btn-info">Clear Form</button>
-            </div>
-        </form>
-    </div>
 
 
 
 
-
-
-
-
-<!---Jquery--->
-<script
-  src="https://code.jquery.com/jquery-3.5.1.js"integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-  crossorigin="anonymous">
-</script>
-
-<!---Popper---->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
-</script>
 </body>
 </html>
+
+
+
+
+
+

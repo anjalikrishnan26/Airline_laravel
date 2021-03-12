@@ -102,7 +102,6 @@
 <th>Flight Name</th>
 <th>Date</th>
 <th>Action</th>
-<th>Action</th>
 
 </thead></tr>
 @foreach ($user as $value)

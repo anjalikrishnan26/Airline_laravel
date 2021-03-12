@@ -48,7 +48,15 @@
           <ul class="navbar-nav ">
               <li class="nav-item"><a href="/admin" class="nav-link">Home</a></li> 
 
-              <li class="nav-item"><a href="" class="nav-link">Airport</a></li>
+              <li class="nav-item"><a href="#" class="nav-link">Airport</a>
+                <ul class="submenu ">
+
+                  <li class="nav-item "><a href="/airport" class="nav-link">Add</a></li>
+                  
+                  <li class="nav-item"><a href="/viewairport" class="nav-link">View</a></li>
+
+                </ul>
+              </li>
 
               <li class="nav-item"><a href="#" class="nav-link">Flight</a>
                 <ul class="submenu ">
@@ -63,7 +71,7 @@
               <li class="nav-item"><a href="#" class="nav-link"> Notification</a>
                 <ul class="submenu">
 
-                  <li class="nav-item"><a href="/add" class="nav-link">Add</a></li>
+                  <li class="nav-item"><a href="/addstatus" class="nav-link">Add</a></li>
                   <li class="nav-item"><a href="/view" class="nav-link">View</a></li>
 
                 </ul>

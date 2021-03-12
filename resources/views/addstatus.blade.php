@@ -90,7 +90,7 @@
     </div> 
  </nav>
 <!-----------------------------end-------------------->
-<form method="post" action="/add" class="form-group">
+<form method="get" action="/add" class="form-group">
 @csrf
 <center>
 

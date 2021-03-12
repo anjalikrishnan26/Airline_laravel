@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Airline;
 use App\Models\AddFlight;
@@ -220,4 +221,29 @@ class AirlineController extends Controller
         Auth::logout();
         return redirect('/log_in');
       }
+      //noti
+      function viewuserstatus()
+    {
+            $data =Notification::all();
+            return view('viewuserstatus',['user'=>$data]);
+    }
 }
+   //view flight serach
+function flightsearch(Request $req)
+    {
+        $data=DB::table('add_flights')->where('departure', $req->departure)
+                                    ->where('arrival', $req->arrival)
+                                    ->get();
+        if(!$data)
+        {
+            return redirect()->back();
+        }
+        else{
+            return view('searchflightresult',['flights'=>$data]);
+
+
+        }
+
+    }
+ 
+    

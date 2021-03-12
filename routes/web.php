@@ -113,9 +113,9 @@ Route::post('add_discount',[AirlineController::class,'add_discount']);
 @date:10/03/2021
 */
 Route::view('addstatus','addstatus');
-Route::post('add',[AirlineController::class,'addstatus']);
+Route::get('add',[AirlineController::class,'addstatus']);
 //view status
-Route::post('view',[AirlineController::class,'viewstatus']);
+Route::get('view',[AirlineController::class,'viewstatus']);
 
 //delete status
 Route::get('delete/{id}',[AirlineController::class,'delete_status']);
@@ -129,3 +129,11 @@ Route::get('viewairport',[AirlineController::class,'viewairport']);//view airpor
 Route::view('passenger','passenger');
 //logout
 Route::post('logout', [AirlineController::class,'logout']);
+//view noti user
+Route::get('viewnoti',[AirlineController::class,'viewuserstatus']);
+//flight search
+// Route::view('flightsearchform','flightsearch');
+// Route::get('searchflight',[AirlineController::class,'searchflight']);
+//view
+
+Route::post('searchflight',[AirlineController::class,'flightsearch']);
