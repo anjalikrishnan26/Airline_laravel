@@ -18,24 +18,19 @@ use App\Http\Controllers\AirlineController;
 Route::get('/', function () {
     return view('welcome');
 });
-// to view register page
+/*
+@function name:regAdd
+@function:registration
+@author:Fathimi Haja
+@date:09/03/2021
+*/
 
 Route::get('/register', function () {
     return view('register');
 });
 
-//to insert
-
 Route::post("/regist",[AirlineController::class,'regAdd']);
-//login
-//login form
-Route::get('/login_form', function () {
-    return view('login');
-});
 
-//login
-//login
-Route::post("log_in",[AirlineController::class,'login']);
 
 /*
 @function name:index
@@ -53,18 +48,33 @@ Route::get('/index', function () {
 @date:10/03/2021
 */
 
-Route::get('admin', function () {
+
+//login form
+Route::get('/login_form', function () {
+    return view('login');
+});
+
+//login
+//login
+Route::post("log_in",[AirlineController::class,'login']);
+
+//login to user page
+Route::post("pass",[AirlineController::class,'passenger']);
+
+
+
+Route::get('/admin', function () {
     return view('adminhome');
 });
 
 
+// Route::post('/registeration', function () {
+//     return view('registration');
+// });
 
-Route::get('/registeration', function () {
-    return view('registration');
-});
+Route::view('flightbook_form','flightbook');
+Route::get('viewbookdetails/{id}',[AirlineController::class,'viewbookdetails']);//
 
-Route::view('flightbook','flight_book');
-Route::get("/flight",[AirlineController::class,'flight_book']);
 
 /*
 @function name:addflightform
@@ -94,7 +104,7 @@ Route::get('viewflight',[AirlineController::class,'viewflight']);
 @date:10/03/2021
 */
 Route::get('update/{id}',[AirlineController::class,'update']);
-Route::post('updateData',[AirlineController::class,'updateData']); 
+Route::post('/update',[AirlineController::class,'updateData']); 
 /*
 @function name:delete
 @function:delete the flight
@@ -135,5 +145,29 @@ Route::get('viewnoti',[AirlineController::class,'viewuserstatus']);
 // Route::view('flightsearchform','flightsearch');
 // Route::get('searchflight',[AirlineController::class,'searchflight']);
 //view
+Route::view('flightsearchform','flightsearch');
+Route::post('searchflight',[AirlineController::class,'searchflight']);
 
-Route::post('searchflight',[AirlineController::class,'flightsearch']);
+
+/*
+@function name:pro_update
+@function:to update user profile
+@author:Fathimi Haja
+@date:11/03/2021
+*/
+Route::get('update_profile/{id}',[AirlineController::class,'update_profile']);
+Route::post('/update_profile',[AirlineController::class,'pro_update']);
+
+Route::get('insert_bookings',[AirlineController::class,'insert_bookings']);//insert booking details.
+Route::get('receipt',[AirlineController::class,'receipt']);//view receipt after book
+
+/*paypal integration*/
+Route::get('paywithpaypal', array('as' => 'paywithpaypal','uses' => 'PaypalController@payWithPaypal',));
+Route::post('paypal', array('as' => 'paypal','uses' => 'PaypalController@postPaymentWithpaypal',));
+Route::get('paypal', array('as' => 'status','uses' => 'PaypalController@getPaymentStatus',));
+Route::view("payment",'payment');
+Route::view("pay",'success');
+
+
+Route::get('tickets', 'AirlineController@tickets');
+Route::view('ticket','AirlineController@ticketgeneration');

@@ -43,7 +43,7 @@
 <!----header ends-->
 
 <!----menu section-->
-<section class="banner" id="home">
+<section class="" id="home">
 <header class="main-header">	
 <nav class="navbar navbar-expand-lg top1 sticky-top">
     <div class="container">
@@ -75,6 +75,7 @@
         </div>
     </div>
 </nav>
+
 
 
 
@@ -126,10 +127,10 @@
         <td>{{$item->economy}}</td>
         <td>{{$item->first}}</td>
 
-
+    
 
       
-        <td><a href="" class="text-decoration-none text-white ">Book</a></td>
+        <td><a href={{"viewbookdetails/".$item->id}} class="text-decoration-none text-white ">Book</a></td>
       </tr>
      
       @endforeach

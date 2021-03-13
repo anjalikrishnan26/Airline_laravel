@@ -78,51 +78,57 @@
  </nav>
 <!-----------------------------end-------------------->
  <body>
-    <form action="{{url('updateData')}}" method="post">
+    <form action="/update" method="post">
+    @foreach($data as $value)
     @csrf
-    <input type="hidden" value="{{$dlist['id']}}" >
+    <input type="hidden" name="id" value="{{$value->id}}" >
     <label class=>Airline Name</label>
-<input type="text" name="airlinename" placeholder="airlinename" required  class="form-control" value="{{$dlist['airlinename']}}">
+<input type="text" name="airlinename" placeholder="airlinename" class="form-control" value="{{$value->airlinename}}">
 
 <label class="">Departure</label>
-<input type="text" name="departure"  placeholder="departure" required class="form-control" value="{{$dlist['departure']}}">
+<input type="text" name="departure" placeholder="departure" class="form-control" value="{{$value->departure}}">
 
 
 <label class="form-label">Arrival</label>
-<input type="text" name="arrival"  required class="form-control" value="{{$dlist['arrival']}}"><br>
+<input type="text" name="arrival" class="form-control" value="{{$value->arrival}}"><br>
 
 
 <label class="">Date</label>
-<input type="date" name="date"required   class="form-control" value="{{$dlist['date']}}">
+<input type="date" name="date" class="form-control" value="{{$value->date}}">
  
  
 <label class="form-label">Departure Time</label>
-<input type="time" name="dtime"  required class="form-control" value="{{$dlist['dtime']}}"><br>
+<input type="time" name="dtime" class="form-control" value="{{$value->dtime}}"><br>
 
 <label class="form-label">Arrival Time</label>
-<input type="time" name="atime"  required class="form-control" value="{{$dlist['atime']}}"><br>
+<input type="time" name="atime" class="form-control" value="{{$value->atime}}"><br>
 
 
 <label class="form-label">Seat Capacity</label>
-<input type="text" name="seatcapacity"  required class="form-control" value="{{$dlist['seatcapacity']}}"><br>
+<input type="text" name="seatcapacity" class="form-control" value="{{$value->seatcapacity}}"><br>
 
 <label class="form-label">Bussiness</label>
-<input type="text" name="business"  required class="form-control" value="{{$dlist['business']}}"><br>
+<input type="text" name="business" class="form-control" value="{{$value->business}}"><br>
 
 <label class="form-label">Economy</label>
-<input type="text" name="economy"  required class="form-control" value="{{$dlist['economy']}}"><br>
+<input type="text" name="economy" class="form-control" value="{{$value->economy}}"><br>
 
 <label class="form-label">First</label>
-<input type="text" name="first"  required class="form-control" value="{{$dlist['first']}}"><br>
+<input type="text" name="first" class="form-control" value="{{$value->first}}"><br>
 
 <label class="form-label">Business cost</label>
-<input type="text" name="bcost"  required class="form-control" value="{{$dlist['bcost']}}"><br>
+<input type="text" name="bcost" class="form-control" value="{{$value->bcost}}"><br>
 <label class="form-label">Economy cost</label>
-<input type="text" name="ecost"  required class="form-control" value="{{$dlist['ecost']}}"><br>
+<input type="text" name="ecost" class="form-control" value="{{$value->ecost}}"><br>
 <label class="form-label">First</label>
-<input type="text" name="fcost"  required class="form-control" value="{{$dlist['fcost']}}"><br>
+<input type="text" name="fcost" class="form-control" value="{{$value->fcost}}"><br>
 
-<div class="container text-center">
+  <div class="container text-center">
 
-<input type="submit" name="submit" value="Update" class="btn btn-primary w-50 mt-3  mb-3">
-</div>
+    <input type="submit" name="submit" value="Update" class="btn btn-primary w-50 mt-3 mb-3">
+  </div>
+@endforeach
+</form>
+</body>
+</html>
+

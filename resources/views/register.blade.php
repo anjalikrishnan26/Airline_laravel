@@ -72,6 +72,7 @@ background-attachment: fixed;
                                 {{Session::get('fail')}}
                             </div>
                         @endif
+                        @if($errors->has(''))
 </div>
 
 <fieldset>

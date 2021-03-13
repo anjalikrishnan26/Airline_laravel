@@ -69,8 +69,8 @@
                 <li class="nav-item">
                     <a href="#contact" class="nav-link text-white">Contact Us</a>
                 </li>
-                <li><button  onclick="document.getElementById('id02').style.display='block'" style="width:auto;"class="btn btn-light"><i class="fa fa-search mt-1	 px-1" aria-hidden="true"></i></button></li>
-                
+                <!-- <li><button  onclick="document.getElementById('id02').style.display='block'" style="width:auto;"class="btn btn-light"><i class="fa fa-search mt-1	 px-1" aria-hidden="true"></i></button></li>
+                 -->
             </ul>
         </div>
     </div>
@@ -215,9 +215,7 @@
                     <input type="radio" id="group" name="r">
                     <label class="" for="group">Round Trip</label>
                 </div>
-                <div id="input">
-                    <input type="text" placeholder="From" name="departure">  
-                                
+                <div id="input">   
                     <!-- <select name="departure">
                     <option>--From--</option>
                     <option>Kochi</option>
@@ -229,6 +227,7 @@
                     <option>Kannur</option>
                     </select> -->
                     <input type="text" placeholder="to" name="departure"> 
+                    <input type="text" placeholder="From" name="arrival"> 
 
                 
                     

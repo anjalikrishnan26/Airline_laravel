@@ -10,7 +10,9 @@ use App\Models\Notification;
 use App\Models\AddDiscount;
 use App\Models\Register;
 use App\Models\Airport;
+use App\Models\Book;
 use Auth;
+use PDF;
 
 class AirlineController extends Controller
 {
@@ -39,32 +41,48 @@ class AirlineController extends Controller
         
 
     }
-    //login
-    function login(Request $req)
-    {
-        
-        $req->validate([
-            'email'=>'required',
-            'password'=>'required'
-        ]);
-        $userinfo=Register::where('email','=',$req->email)->first();
-        if(!$userinfo)
-        {
-            return back()->with('fail','we cannot recognize email');
-        }
-        else
-        {
-            if(Hash::check($req->password,$userinfo->password))
-            {
-                $req->session()->put('LoggedUser',$userinfo->id);
-                return view('passenger');
-            }
-            else
-            {
-                return back()->with('fail','invalid password');
-            }
-        }
-    }
+   /*---@function name:login
+     *---@function:login for admin and user
+     *---@author:Fathimi Haja
+     *---@date:09/03/2021, 11/03/2021*/ 
+    
+     function login(Request $req)
+     {
+         
+         $req->validate([
+             'email'=>'required',
+             'password'=>'required'
+         ]);
+         $email=$req->input('email');
+         $password=$req->input('password');
+         $userinfo=Register::where('email','=',$req->email)->first();
+         if(!$userinfo)
+         {
+             return back()->with('fail','we cannot recognize email');
+         }
+         else
+         {
+             if(Hash::check($req->password,$userinfo->password))
+             {
+                 
+                     $req->session()->put('LoggedUser',$userinfo->id);
+                     $data=['LoggedUserInfo'=>Register::where('id','=',session('LoggedUser'))->first()];
+                     if($email=='admin123@gmail.com' && $password=='Admin123')
+                     {
+                         return view('adminhome',$data);
+                     }
+                     else
+                     {
+                         return view('passenger',$data);
+                     }
+             }
+             else
+             {
+                 return back()->with('fail','invalid password');
+             }
+         }
+     }
+ 
 
    
     function flight_book($id)
@@ -106,8 +124,8 @@ class AirlineController extends Controller
     public function update($id)
     {
        
-        $data=AddFlight::find($id);
-        return view('flightupdate',['dlist'=>$data]);
+        $data=AddFlight::where('id',$id)->select('add_flights.*')->get();
+        return view('flightupdate',compact('data'));
     }
     function updateData(Request $req)
     {
@@ -121,10 +139,9 @@ class AirlineController extends Controller
         $data->business=$req->business;
         $data->economy=$req->economy;
         $data->first=$req->first;
-        $data->bcost=$req->economy;
-        $data->ecost=$req->economy;
-        $data->fcost=$req->economy;
-
+        $data->bcost=$req->bcost;
+        $data->ecost=$req->ecost;
+        $data->fcost=$req->fcost;
         $data->save();
         return redirect('viewflight');
 
@@ -227,23 +244,144 @@ class AirlineController extends Controller
             $data =Notification::all();
             return view('viewuserstatus',['user'=>$data]);
     }
-}
    //view flight serach
-function flightsearch(Request $req)
+   function searchflight(Request $req)
+   {
+       $dep=$req->departure;
+       $arr=$req->arrival;
+       $data=AddFlight::where('departure', $dep )
+                                   ->where('arrival', $arr)
+                                   ->get();
+        
+                                  
+       if(!$data)
+       {
+           return redirect()->back();
+       }
+       else{
+           return view('searchflightresult',['flights'=>$data]);
+
+
+       }
+
+   }
+     /*---@function name:update
+     *---@function:to view user profile
+     *---@author:Fathimi Haja
+     *---@date:11/03/2021*/
+     function update_profile($id)
+     {
+         $data=Register::where('id',$id)->select('registers.*')->get();
+         return view('profile',compact('data'));  
+     }
+     /*---@function name:update
+     *---@function:to update user profile
+     *---@author:Fathimi Haja
+     *---@date:11/03/2021*/
+    
+    function pro_update(Request $req)
     {
-        $data=DB::table('add_flights')->where('departure', $req->departure)
-                                    ->where('arrival', $req->arrival)
-                                    ->get();
-        if(!$data)
-        {
-            return redirect()->back();
-        }
-        else{
-            return view('searchflightresult',['flights'=>$data]);
-
-
-        }
-
+        $data=Register::find($req->id);
+        $data->fname=$req->fname;
+        $data->lname=$req->lname;
+        $data->age=$req->age;
+        $data->gender=$req->gender;
+        $data->address=$req->address;
+        $data->district=$req->district;
+        $data->phno=$req->phno;
+        $data->email=$req->email;
+        $query=$data->save();
+        if($query)
+            {
+                return back()->with('success','Updated Successfully');
+            }
+            else
+            {
+                return back()->with('fail','something went wrong');
+            }
+        //return redirect('update');
     }
+    
+    function viewbookdetails( $id)
+    {
+       
+        
+        $data=AddFlight::where('id',$id)->select('add_flights.*')->get();  
+        return view('flightbook',compact('data'));
+        
+    }
+
+     
+function insert_bookings(Request $req)
+{
+    
+    $data=new Book;
+    
+    $data->airlinename=$req->airlinename;
+    $data->departure=$req->departure;
+    $data->arrival=$req->arrival;
+    $data->date=$req->date;
+    $data->dtime=$req->dtime;
+    $data->atime=$req->atime;
+    $data->name=$req->name;
+    $data->age=$req->age;
+    $data->class=$req->class;
+    $data->email=$req->email;
+
+    $query=$data->save();
+    if($query)
+    {
+        // $data=DB::table('books')->where('name', $req->name)
+        //                         ->where('email', $req->email)
+        //                         ->where('age', $req->age)
+        //                         ->get();
+
+
+        $data = DB::table('add_flights')
+        ->join('books', 'add_flights.airlinename', '=', 'books.airlinename')
+        // ->join('adminmodels', 'adminmodels.id', '=', 'bookings.departure')
+        ->where('books.class', $req->class)
+        ->where('books.name', $req->name)
+        ->where('books.age', $req->age)
+        ->get();
+        // $b='Business';
+    }
+    if(!$data)
+    {
+        return redirect()->back();
+    }
+    else{
+    //     if($b=$req->class){
+    //         $cost=$data->bcost
+    //     }
+        return view('receipt',['booking'=>$data]);
+    }
+
+}
+public function tickets($id){
+    $data = Book::find($id);
+    return view('index', compact('data'));
+  }
+
+  function ticketgeneration()
+  {
+    
+      $data=Book::where('name', $dep )
+                                  ->where('arrival', $arr)
+                                  ->get();
+       
+                                 
+      if(!$data)
+      {
+          return redirect()->back();
+      }
+      else{
+          return view('searchflightresult',['flights'=>$data]);
+
+
+      }
+
+  }
+}
  
     

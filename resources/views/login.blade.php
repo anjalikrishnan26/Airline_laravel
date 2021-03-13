@@ -1,7 +1,16 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registration</title>
+<meta charset=utf-8>
+            <meta name="viewport" content="width=device-width,initial-scale=1">
+
+             <!---Fontawesome--->
+            <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+            <!---Bootstrap5----->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 
@@ -122,42 +131,43 @@ span.psw {
 </style>
 </head>
 <body>
+<div class="container mt-5">
+        <div class="row">
+            <div class="col-6">
+              <h2 class="text-center">Login Form</h2>
 
-<h2>Login Form</h2>
+              <!-- <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
 
-<!-- <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
-
-<div id="id01" class="modal">
- 
-  <form class="modal-content animate" action="<?php //echo base_url()?>main/login" method="post">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-     
-    </div> -->
-    <form action="log_in" method="post">
-    @csrf
+              <div id="id01" class="modal">
+                
+              <form class="modal-content animate" action="<?php //echo base_url()?>main/login" method="post">
+              <div class="imgcontainer">
+              <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
                     
-                        
-                        @if(Session::get('fail'))
-                            <div class="alert alert-danger">
-                                {{Session::get('fail')}}
-                            </div>
-                        @endif
+              </div> -->
+              <form action="log_in" method="post">
+                  @csrf
+                    @if(Session::get('fail'))
+                      <div class="alert alert-danger">
+                        {{Session::get('fail')}}
+                      </div>
+                    @endif
 
-    <div class="container">
-      <label for="email"><b>E-mail</b></label>
-      <input type="text" placeholder="Enter E-mail" name="email" required>
+                    <div class="container">
+                      <label for="email"><b>E-mail</b></label>
+                      <input type="text" placeholder="Enter E-mail" name="email" required>
 
-      <label for="password"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" required>
-       
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
-
-      </form>
+                      <label for="password"><b>Password</b></label>
+                      <input type="password" placeholder="Enter Password" name="password" required>
+                      
+                      <button type="submit">Login</button>
+                      <label>
+                        <a href="register">Sign-up</a>
+                      </label>
+                    </div>
+                 </form>
+</div>
+</div>
 </div>
 
 <script>
@@ -174,4 +184,3 @@ window.onclick = function(event) {
 
 </body>
 </html>
-
