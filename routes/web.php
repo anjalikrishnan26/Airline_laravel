@@ -114,9 +114,19 @@ Route::post('/update',[AirlineController::class,'updateData']);
 @date:10/03/2021
 */
 Route::get('delete/{id}',[AirlineController::class,'delete']);
-//discount
+/*
+@function name:discount
+@function:discount view page
+@author:Anjali Krishnaa 
+@date:10/03/2021
+*/
 Route::view('discount','discount');
-// Route::get('discount',[AirlineController::class,'discount']);
+/*
+@function name:discount
+@function:discount insertion
+@author:Anjali Krishnan
+@date:10/03/2021
+*/
 Route::post('add_discount',[AirlineController::class,'add_discount']);
 /*
 @function name:addstatus
@@ -126,24 +136,62 @@ Route::post('add_discount',[AirlineController::class,'add_discount']);
 */
 Route::view('addstatus','addstatus');
 Route::get('add',[AirlineController::class,'addstatus']);
-//view status
+/*
+@function name:addstatus
+@function:view status page
+@author:Nikhila shibu
+@date:10/03/2021
+*/
 Route::get('view',[AirlineController::class,'viewstatus']);
-
-//delete status
+/*
+@function name:addstatus
+@function:delete the status page
+@author:Nikhila shibu
+@date:10/03/2021
+*/
 Route::get('delete/{id}',[AirlineController::class,'delete_status']);
 
-//add airport
+/*
+@function name:addflightform
+@function:load the flight page
+@author:Jayalekshmi L
+@date:11/03/2021
+*/
 Route::view('airport','airportdetails');//airport details add form
+/*
+@function name:addairport
+@function:insert airport details 
+@author:Jayalekshmi L
+@date:11/03/2021
+*/
 Route::post('addairport',[AirlineController::class,'addairport']);//insert airport details.
-//view airport
+/*
+@function name:viewairport
+@function:view the airort details
+@author:Jayalekshmi L
+@date:11/03/2021
+*/
 Route::get('viewairport',[AirlineController::class,'viewairport']);//view airport details.
-//passenger home
+/*
+@function name:passenger
+@function:load the passenger home page
+@author:Anjali Krishnan
+@date:11/03/2021
+*/
 Route::view('passenger','passenger');
-//logout
+/*
+@function name:logout
+@function:logout 
+@author:Anjali Krishnan
+@date:11/03/2021
+*/
 Route::post('logout', [AirlineController::class,'logout']);
-//view noti user
-
-
+/*
+@function name:viewnoti
+@function:view the notification to the users 
+@author:Anjali Krishnan
+@date:11/03/2021
+*/
 Route::get('viewnoti',[AirlineController::class,'viewuserstatus']);
 //flight search
 // Route::view('flightsearchform','flightsearch');
@@ -158,7 +206,6 @@ Route::get('viewnoti',[AirlineController::class,'viewuserstatus']);
 */
 Route::view('flightsearchform','flightsearch');
 Route::post('searchflight',[AirlineController::class,'searchflight']);
-
 
 /*
 @function name:pro_update
