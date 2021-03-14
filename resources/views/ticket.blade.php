@@ -33,7 +33,7 @@ background-color:#5c00e6;
 </div>
 <div class="container col-5 ms-5 border border-dark">
 <h3 class="text-center text-primary mt-5">Ticket</h3></br>
-<form  method="get" action="{{url('payment')}}" class="align-items-center" >
+<form  method="get" action="{{url('')}}" class="align-items-center" >
 
 <fieldset class="align-items-center">
 @foreach($values as $row)
