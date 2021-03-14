@@ -51,11 +51,11 @@
           <ul class="navbar-nav">
               <li class="nav-item"><a href="" class="nav-link text-white">Home</a></li> 
               <li class="nav-item"><a href={{"update_profile/".$LoggedUserInfo->id}} class="nav-link text-white">View Profile</a></li>
-              <li class="nav-item"><a href="" class="nav-link  text-white">Notification</a></li>
+              <li class="nav-item"><a href="viewnoti" class="nav-link  text-white">Notification</a></li>
               <!-- <li class="nav-item"><a href="#" class="nav-link">Portfolio</a></li>---->
               <li><button  onclick="document.getElementById('id02').style.display='block'" style="width:auto;"class="btn btn-light"><i class="fa fa-search mt-1	 px-1" aria-hidden="true"></i></button></li>
               <li class="nav-item"><a href="ticket" class="nav-link text-white">Ticket</a></li> 
-           <li class="nav-item"><a href="" class="nav-link text-white">Log Out</a></li>
+           <li class="nav-item"><a href="index" class="nav-link text-white">Log Out</a></li>
           </ul>
       </div>
     </div> 

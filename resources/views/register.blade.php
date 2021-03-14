@@ -34,11 +34,11 @@ background-attachment: fixed;
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto ">
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-white">Home</a>
+                    <a href="/index" class="nav-link text-white">Home</a>
                 </li>
                
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-white">Sign In</a>
+                    <a href="/login_form" class="nav-link text-white">Sign In</a>
                 </li>
 
                 <li class="nav-item">
@@ -72,7 +72,11 @@ background-attachment: fixed;
                                 {{Session::get('fail')}}
                             </div>
                         @endif
-                        @if($errors->has(''))
+                        @if($errors->has('email'))
+                            <div class="alert alert-danger">
+                                {{$errors->first('email')}}
+                            </div>
+                        @endif
 </div>
 
 <fieldset>

@@ -111,7 +111,7 @@ color: rgba(0,0,0,0.7);
     <div class="site-title text-center">
         <div><img src="./assets/checked.png" alt=""></div>
         <h1 class="font-title">Payment Done Successfully...!</h1>
-        <a href={{"index"}}>LOGIN</a>
+        <a href="/ticket">Ticket</a>
     </div>
 
     

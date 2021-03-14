@@ -54,7 +54,7 @@
               <li class="nav-item"><a href="" class="nav-link text-white">Search Flight</a></li>
               <li class="nav-item"><a href="" class="nav-link  text-white">Notification</a></li>
               <!-- <li class="nav-item"><a href="#" class="nav-link">Portfolio</a></li>
- -->           <li class="nav-item"><a href="/logout" class="nav-link text-white">Log Out</a                 ></li>
+ -->           <li class="nav-item"><a href="index" class="nav-link text-white">Log Out</a                 ></li>
           </ul>
       </div>
     </div> 

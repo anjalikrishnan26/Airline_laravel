@@ -133,6 +133,8 @@ span.psw {
 <body>
 <div class="container mt-5">
         <div class="row">
+        <div class="col-3">
+        </div>
             <div class="col-6">
               <h2 class="text-center">Login Form</h2>
 
@@ -162,7 +164,7 @@ span.psw {
                       
                       <button type="submit">Login</button>
                       <label>
-                        <a href="register">Sign-up</a>
+                        <button class="btn btn-primary"><a href="register" class="text-white nav-link">Sign-up</a></button>
                       </label>
                     </div>
                  </form>

@@ -27,13 +27,8 @@ background-color:#5c00e6;
       <a href="#" class="text-decoration-none text-white">TRAVEL KITE</a>  
       <div class="">
           <ul class="navbar-nav">
-              <li class="nav-item"><a href="" class="nav-link text-white">Home</a></li>
-              <li class="nav-item"><a href="" class="nav-link text-white">View Profile</a></li>
-              <li class="nav-item"><a href="" class="nav-link text-white">Flight Details</a></li>
-
-              <li class="nav-item "><a href="" class="nav-link text-white">Notification</a></li>
-
-                <li class="nav-item "><a href="" class="nav-link text-white">Log Out</a></li>
+              <li class="nav-item "><a href="/pass" class="nav-link text-white">Back</a></li>
+              <li class="nav-item "><a href="/index" class="nav-link text-white">Log Out</a></li>
           </ul>
       </div>
     </div>
@@ -45,11 +40,11 @@ background-color:#5c00e6;
 <div class="container ">
 <div class="row">
 <div class="container col-5 ms-5">
-<h3 class="text-center text-primary mt-5">Receipt</h3>
+<h3 class="text-center text-primary mt-5">Ticket</h3>
 <form  method="get" action="{{url('payment')}}" >
 
 <fieldset>
-@foreach($data as $row)
+@foreach($values as $row)
 <input type="hidden" name="id" value="{{$row->id}}">
 <label class=>Flight Name:</label>
 <input type="text" name="airlinename" value="{{$row->airlinename}}" required maxlength="25" pattern="[a-zA-Z]+" class="form-control" readonly>

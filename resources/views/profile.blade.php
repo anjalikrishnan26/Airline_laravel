@@ -32,13 +32,8 @@ background-attachment: fixed;
       <a href="#" class="text-decoration-none text-white">TRAVEL KITE</a>  
       <div class="">
           <ul class="navbar-nav">
-              <li class="nav-item"><a href="" class="nav-link text-white">Home</a></li> 
-              <li class="nav-item"><a href="" class="nav-link text-white">View Profile</a></li>
-              <li class="nav-item"><a href="" class="nav-link text-white">Flight Details</a></li>
-
-              <li class="nav-item "><a href="" class="nav-link text-white">Notification</a></li>
-
-                <li class="nav-item "><a href="" class="nav-link text-white">Log Out</a></li>
+              <li class="nav-item"><a href="{{ url()->previous() }}" class="nav-link text-white">Back</a></li> 
+                <li class="nav-item "><a href="index" class="nav-link text-white">Log Out</a></li>
           </ul>
       </div>
     </div> 

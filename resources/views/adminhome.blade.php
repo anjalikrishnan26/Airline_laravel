@@ -77,7 +77,7 @@
                 </ul>
               </li>
 
-              <li class="nav-item"><a href="" class="nav-link">Booking</a></li>
+              <li class="nav-item"><a href="/details" class="nav-link">Passengers</a></li>
               <li class="nav-item"><a href="/discount" class="nav-link">Flight Discount</a></li>
            <li class="nav-item"><a href="" class="nav-link">Log Out </a></li>
           </ul>

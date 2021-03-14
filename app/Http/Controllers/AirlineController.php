@@ -16,8 +16,25 @@ use PDF;
 
 class AirlineController extends Controller
 {
+    /*--------------
+    @function name:regAdd
+    @function:registration
+    @author:Fathimi Haja
+    @date:09/03/2021
+    --------------*/
     function regAdd(Request $req)
     {
+        $req->validate(
+            ['fname'=>'required|regex:/^[\pL\s\-]+$/u|max:20',
+            'lname'=>'required|regex:/^[\pL\s\-]+$/u|max:20',
+            'age'=>'required',
+            'gender'=>'required',
+            'address'=>'required',
+            'district'=>'required',
+            'phno'=>'required',
+            'email'=>'required|email|unique:registers',
+            'password'=>'required|alpha_num|min:6',
+            ]);
         $airline=new Register;
         $airline->fname=$req->fname;
         $airline->lname=$req->lname;
@@ -41,7 +58,7 @@ class AirlineController extends Controller
         
 
     }
-   /*---@function name:login
+    /*---@function name:login
      *---@function:login for admin and user
      *---@author:Fathimi Haja
      *---@date:09/03/2021, 11/03/2021*/ 
@@ -82,7 +99,12 @@ class AirlineController extends Controller
              }
          }
      }
- 
+    // to view passenger page
+    function passenger()
+    {
+        return view('passenger');  
+    }
+    
 
    
     function flight_book($id)
@@ -91,6 +113,12 @@ class AirlineController extends Controller
         return view('flight_book',['user'=>$data]);
     }
     //insert flight
+    /*--------------
+    @function name:addflightform
+    @function:load the flight page
+    @author:Jayalekshmi L
+    @date:09/03/2021
+    --------------*/
     function addflight(Request $req)
     {
         $data=new AddFlight;
@@ -115,12 +143,18 @@ class AirlineController extends Controller
         }
         
     }
+    /*---------------
+    @function name:viewflight
+    @function:view the flight details
+    @author:Anjali Krishnan
+    @date:10/03/2021
+    -------*/
     public function viewflight()
     {
         $data=AddFlight::all();
         return view('viewflight',['data'=>$data]);//view flight
     }
-//update flight
+    //update flight
     public function update($id)
     {
        
@@ -168,6 +202,12 @@ class AirlineController extends Controller
         }
         
     }
+    /*
+    @function name:addstatus
+    @function:Load the status page
+    @author:Nikhila shibu
+    @date:10/03/2021
+    */
     //to add flight status
     function addstatus(Request $req)
     {
@@ -238,6 +278,14 @@ class AirlineController extends Controller
         Auth::logout();
         return redirect('/log_in');
       }
+    public function log_out()
+    {
+        if(session()->has('LoggedUser'))
+        {
+            session()->pull('LoggedUser');
+            return redirect('pass');
+        }
+    }
       //noti
       function viewuserstatus()
     {
@@ -329,8 +377,10 @@ function insert_bookings(Request $req)
     $data->email=$req->email;
 
     $query=$data->save();
+
     if($query)
     {
+        //$values=Book::where('id')
         // $data=DB::table('books')->where('name', $req->name)
         //                         ->where('email', $req->email)
         //                         ->where('age', $req->age)
@@ -343,8 +393,36 @@ function insert_bookings(Request $req)
         ->where('books.class', $req->class)
         ->where('books.name', $req->name)
         ->where('books.age', $req->age)
+        ->where('books.email', $req->email)
+
         ->get();
-        // $b='Business';
+        foreach($data as $row)
+        {
+            $bookid=$row->bid;
+            $name=$row->airlinename;
+        }
+        
+        //dd($data);
+        $req->session()->put('bid',$bookid);
+        
+        if($req->class == 'Economy')
+           {
+            AddFlight::where('airlinename',$name)->update(array(
+                'economy'=>DB::raw('economy - 1')  
+            ));
+           }
+           elseif($req->class == 'Business')
+           {
+            AddFlight::where('airlinename',$name)->update(array(
+                'business'=>DB::raw('business - 1') 
+            ));
+           }
+           else
+           {
+            AddFlight::where('airlinename',$name)->update(array(
+                'first'=>DB::raw('first - 1')
+            ));
+           }
     }
     if(!$data)
     {
@@ -354,6 +432,7 @@ function insert_bookings(Request $req)
     //     if($b=$req->class){
     //         $cost=$data->bcost
     //     }
+        
         return view('receipt',['booking'=>$data]);
     }
 
@@ -363,12 +442,13 @@ public function tickets($id){
     return view('index', compact('data'));
   }
 
-  function ticketgeneration()
+  function ticketgeneration(Request $req)
   {
-    
-      $data=Book::where('name', $dep )
-                                  ->where('arrival', $arr)
-                                  ->get();
+      $id=$req->session()->get('bid');
+      $data = DB::table('add_flights')
+      ->join('books', 'add_flights.airlinename', '=', 'books.airlinename')
+      ->where('bid', $id )
+      ->get();
        
                                  
       if(!$data)
@@ -376,12 +456,27 @@ public function tickets($id){
           return redirect()->back();
       }
       else{
-          return view('searchflightresult',['flights'=>$data]);
+          return view('ticket',['values'=>$data]);
 
 
       }
 
   }
+    /*---@function name:user_details
+     *---@function:to view registered users
+     *---@author:Fathimi Haja
+     *---@date:11/03/2021*/
+
+     function user_details()
+     {
+         $data=Register::all();
+         return view('reg_user_view',['data'=>$data]);
+     
+     }   
+
+     //payment action
+
+    
 }
  
     

@@ -106,10 +106,12 @@
         <th rowspan="2">Date</th>
         <th rowspan="2">Depart Time</th>
         <th rowspan="2">Arrive Time</th>
-        <th>Class Seats</th></tr>
-        <tr><th>Business</th>
+        <th><th></th><th>Seats Available</th></tr>
+        <tr><th>Total</th>
+        <th>Business</th>
         <th>Economy</th>
         <th>First</th>
+        <th>Action</th>
         </tr>
 
 
@@ -130,7 +132,7 @@
     
 
       
-        <td><a href={{"viewbookdetails/".$item->id}} class="text-decoration-none text-white ">Book</a></td>
+        <td><button class="btn btn-success"><a href={{"viewbookdetails/".$item->id}} class="text-decoration-none text-white ">Book</a></button></td>
       </tr>
      
       @endforeach

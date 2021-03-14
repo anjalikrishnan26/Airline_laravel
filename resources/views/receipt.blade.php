@@ -51,6 +51,7 @@ background-attachment: fixed;
 <div class="row">
 <div class="container col-5 ms-5">
 <h3 class="text-center text-primary mt-5">Receipt</h3>
+
 <form  method="get" action="{{url('payment')}}" >
 
 <fieldset>
