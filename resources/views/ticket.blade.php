@@ -22,63 +22,55 @@ background-color:#5c00e6;
 </head>
 <body>
 
-<nav class="navbar top1 navbar-expand-lg ">
-    <div class="container">
-      <a href="#" class="text-decoration-none text-white">TRAVEL KITE</a>  
-      <div class="">
-          <ul class="navbar-nav">
-              <li class="nav-item "><a href="/pass" class="nav-link text-white">Back</a></li>
-              <li class="nav-item "><a href="/index" class="nav-link text-white">Log Out</a></li>
-          </ul>
-      </div>
-    </div>
- </nav>
+
 
 <!--nav end-->
 <section>
 
-<div class="container ">
-<div class="row">
-<div class="container col-5 ms-5">
-<h3 class="text-center text-primary mt-5">Ticket</h3>
-<form  method="get" action="{{url('payment')}}" >
+<div class="container align-items-center">
+<div class="row align-items-center">
+<div class="col-3">
+</div>
+<div class="container col-5 ms-5 border border-dark">
+<h3 class="text-center text-primary mt-5">Ticket</h3></br>
+<form  method="get" action="{{url('payment')}}" class="align-items-center" >
 
-<fieldset>
+<fieldset class="align-items-center">
 @foreach($values as $row)
+<table>
 <input type="hidden" name="id" value="{{$row->id}}">
-<label class=>Flight Name:</label>
-<input type="text" name="airlinename" value="{{$row->airlinename}}" required maxlength="25" pattern="[a-zA-Z]+" class="form-control" readonly>
+<tr><td><span class="">Flight Name:</span></td>
+<td><input type="text" name="airlinename" value="{{$row->airlinename}}" required maxlength="25" pattern="[a-zA-Z]+" class="" readonly>
+</td></tr>
+<tr><td><span class="">Departure:</span></td>
+<td><input type="text" name="departure"  value="{{$row->departure}}" required maxlength="25" pattern="[a-zA-Z]+" class="" readonly>
+</td></tr>
 
-<label class="">Departure:</label>
-<input type="text" name="departure"  value="{{$row->departure}}" required maxlength="25" pattern="[a-zA-Z]+" class="form-control" readonly>
+<tr><td><span class="form-span">Destination:</span></td>
+<td><input type="text" name="arrival" value="{{$row->arrival}}" required class="" readonly></td></tr>
 
+<tr><td><span class="form-span">Date:</span></td>
+<td><input type="text" name="date" value="{{$row->date}}" required class="" readonly></td></tr>
 
-<label class="form-label">Destination:</label>
-<input type="text" name="arrival" value="{{$row->arrival}}" required class="form-control" readonly><br>
+<tr><td><span class="form-span">Depart Time:</span></td>
+<td><input type="text" name="dtime" value="{{$row->dtime}}" required class="" readonly></td></tr>
 
-<label class="form-label">Date:</label>
-<input type="text" name="date" value="{{$row->date}}" required class="form-control" readonly><br>
+<tr><td><span class="form-span">Arrival Time:</span></td>
+<td><input type="text" name="atime" value="{{$row->atime}}" required class="" readonly></td></tr>
 
-<label class="form-label">Depart Time:</label>
-<input type="text" name="dtime" value="{{$row->dtime}}" required class="form-control" readonly><br>
+<tr><td><span class="form-span">Name of Traveller:</span></td>
+<td><input type="text" name="name" value="{{$row->name}}" required class="" readonly></td></tr>
 
-<label class="form-label">Arrival Time:</label>
-<input type="text" name="atime" value="{{$row->atime}}" required class="form-control" readonly><br>
+<tr><td><span class="">Age:</span></td>
+<td><input type="text" name="age" value="{{$row->age}}" required class="" readonly></td></tr>
 
-<form action=""></form>
-<label class="form-label">Name of Traveller:</label>
-<input type="text" name="name" value="{{$row->name}}" required class="form-control" readonly><br>
+<tr><td><span class="form-span">Email:</span></td>
+<td><input type="text" name="email" value="{{$row->email}}" required class="" readonly></td></tr>
 
-<label class="">Age:</label>
-<input type="text" name="age" value="{{$row->age}}" required class="form-control" readonly><br>
+<tr><td><span class="form-span">Class:</span></td>
+<td><input type="text" name="class" value="{{$row->class}}" required class="" readonly></td></tr>
 
-<label class="form-label">Email:</label>
-<input type="text" name="email" value="{{$row->email}}" required class="form-control" readonly><br>
-
-<label class="form-label">Class:</label>
-<input type="text" name="class" value="{{$row->class}}" required class="form-control" readonly><br>
-
-<label class="form-label">Cost:</label>
+<tr><td><span class="form-span">Cost:</span>
 <?php $cost=0;
 $reduction=0;
 if($row->class=='Business')
@@ -93,15 +85,19 @@ else{
 }
 if($row->age>=60)
 {
-    $reduction=$cost-1000;
+    $reduction=$cost-1000;?>
+    <td><input type="text" name="class" value="<?php echo $reduction; ?>" required class="" readonly></td></tr>
+<?php
+}
+else{
+    ?>
+    <td><input type="text" name="class" value="<?php echo $cost; ?>" required class="" readonly></td></tr>
+<?php
 }
 
 ?>
-<input type="text" name="class" value="<?php echo $cost; ?>" required class="form-control" readonly><br>
 
-<label class="form-label">Senior Citizen Concession Cost:</label>
-<input type="text" name="class" value="<?php echo $reduction; ?>" required class="form-control" readonly><br>
-
+</table>
 <div class="container text-center">
 
 <input type="submit" name="update" value="Download PDF" class="btn btn-primary w-50 mt-3  mb-3">
